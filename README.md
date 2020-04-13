@@ -27,6 +27,27 @@ yarn add -D svelte-radio
 </Radio.Group>
 ```
 
+### Styling
+
+This component is unstyled by design. Use a global class selector to style the `.svelte-radio-group` and `.svelte-radio` classes.
+
+```html
+<style>
+  :global(.svelte-radio-group) {
+    border: 2px solid #e0e0e0;
+    padding: 1rem;
+  }
+
+  :global(.svelte-radio) {
+    margin-bottom: 0.5rem;
+  }
+
+  :global(.svelte-radio label) {
+    margin-left: 0.25rem;
+  }
+</style>
+```
+
 ## API
 
 ### `Radio.Group`
@@ -57,15 +78,15 @@ yarn add -D svelte-radio
 ```html
 <Radio.Group on:change={({ detail }) => { console.log(detail); }} />
 <!--
-    {
-      "selected": {
-        "id": string,
-        "value": string,
-        "label": string,
-        "checked": true
-      }
+  {
+    "selected": {
+      "id": string,
+      "value": string,
+      "label": string,
+      "checked": true
     }
-  -->
+  }
+-->
 ```
 
 ### `Radio.Button`
