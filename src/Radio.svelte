@@ -1,5 +1,7 @@
 <script>
   export let id = "radio-" + Math.random().toString(36);
+
+  /** @type {number | string} */
   export let value = "";
   export let label = "Radio button label";
   export let checked = false;
@@ -7,26 +9,20 @@
   import { getContext, onDestroy } from "svelte";
 
   const ctx = getContext("RadioGroup");
+
   let unsubscribe = undefined;
 
   onDestroy(() => {
-    if (ctx !== undefined) {
-      ctx.remove({ id });
-    }
-
-    if (unsubscribe !== undefined) {
-      unsubscribe();
-    }
+    if (ctx) ctx.remove({ id });
+    if (unsubscribe) unsubscribe();
   });
 
   $: if (ctx !== undefined) {
     ctx.add({ id, value, label, checked });
 
-    if (checked) {
-      ctx.toggle({ id });
-    }
+    if (checked) ctx.toggle({ id });
 
-    unsubscribe = ctx.items.subscribe(value => {
+    unsubscribe = ctx.items.subscribe((value) => {
       if (value[id] !== undefined) {
         checked = value[id].checked;
       }
@@ -34,7 +30,7 @@
   }
 </script>
 
-<div class="svelte-radio">
+<div class:svelte-radio={true}>
   <input
     {...$$restProps}
     type="radio"

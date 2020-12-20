@@ -1,18 +1,32 @@
-import resolve from "rollup-plugin-node-resolve";
+import resolve from "@rollup/plugin-node-resolve";
 import svelte from "rollup-plugin-svelte";
+import svelteReadme from "svelte-readme";
 import pkg from "./package.json";
 
-export default ["es", "umd"].map((format) => {
-  const UMD = format === "umd";
+const DEV = process.env.ROLLUP_WATCH;
+const BUNDLE = process.env.BUNDLE === "true";
 
-  return {
-    input: "src",
-    output: {
-      exports: "named",
-      format,
-      file: UMD ? pkg.main : pkg.module,
-      name: UMD ? "svelte-radio" : undefined,
-    },
-    plugins: [svelte(), resolve()],
-  };
-});
+export default () => {
+  if (!BUNDLE) {
+    return svelteReadme({
+      svelte: { dev: DEV, immutable: true },
+      minify: !DEV,
+      prefixUrl: `${pkg.homepage}/tree/master/`,
+    });
+  }
+
+  return ["es", "umd"].map((format) => {
+    const UMD = format === "umd";
+
+    return {
+      input: pkg.svelte,
+      output: {
+        format,
+        file: UMD ? pkg.main : pkg.module,
+        name: UMD ? pkg.name : undefined,
+        exports: "named",
+      },
+      plugins: [svelte(), resolve()],
+    };
+  });
+};

@@ -3,28 +3,42 @@
 [![NPM][npm]][npm-url]
 [![Build][build]][build-badge]
 
-> Customizable radio button component for Svelte.
+> Composed Radio button group component for Svelte.
 
 ## Install
 
 ```bash
 yarn add -D svelte-radio
+# OR
+npm i -D svelte-radio
 ```
 
 ## Usage
 
-```html
+```svelte
 <script>
-  import Radio from "svelte-radio";
+  import { RadioGroup, Radio } from "svelte-radio";
 
   let value = "1";
 </script>
 
-<Radio.Group bind:value>
-  <Radio.Button label="Label 1" value="1" />
-  <Radio.Button label="Label 2" value="2" />
-  <Radio.Button label="Label 3" value="3" />
-</Radio.Group>
+<RadioGroup bind:value label="Radio group legend">
+  <Radio label="Label 1" value="1" />
+  <Radio label="Label 2" value="2" />
+  <Radio label="Label 3" value="3" />
+</RadioGroup>
+
+value:
+{value}
+
+<div>
+  <button
+    type="button"
+    on:click={() => {
+      value = '2';
+    }}
+  >Set value to "2"</button>
+</div>
 ```
 
 ### Styling
@@ -50,24 +64,24 @@ This component is unstyled by design. Use a global class selector to style the `
 
 ## API
 
-### `Radio.Group`
+### RadioGroup
 
-| Property name    | Value                                         |
+| Prop name    | Value                                         |
 | :--------------- | :-------------------------------------------- |
 | legend           | `string`                                      |
-| value            | `string` (default: `undefined`)               |
+| value            | `string` or `number` (default: `undefined`)               |
 | `...$$restProps` | (forward to the top-level `fieldset` element) |
 
-### `Radio.Button`
+### Radio
 
-| Property name    | Value                                         |
+| Prop name    | Value                                         |
 | :--------------- | :-------------------------------------------- |
 | label            | `string`                                      |
-| value            | `string` (default: `undefined`)               |
+| value            | `string` or `number` (default: `undefined`)               |
 | checked          | `boolean` (default: `false`                   |
 | `...$$restProps` | (forward to the second-level `input` element) |
 
-## Forwarded events
+## Dispatched events
 
 ### `Radio.Group`
 
@@ -75,25 +89,23 @@ This component is unstyled by design. Use a global class selector to style the `
 | :---------- | :--------------------------------- |
 | `on:change` | triggered if the selection changes |
 
-```html
-<Radio.Group on:change={({ detail }) => { console.log(detail); }} />
-<!--
-  {
-    "selected": {
-      "id": string,
-      "value": string,
-      "label": string,
-      "checked": true
-    }
-  }
--->
+```svelte
+<RadioGroup
+  bind:value
+  label="Radio group legend"
+  on:change={(e) => {
+    console.log(e.detail);
+  }}
+>
+  <Radio label="Label 1" value="1" />
+  <Radio label="Label 2" value="2" />
+  <Radio label="Label 3" value="3" />
+</RadioGroup>
 ```
 
-### `Radio.Button`
+## TypeScript support
 
-```html
-<Radio.Button on:focus on:blur on:change on:keydown />
-```
+Svelte version 3.31 or greater is required to use this module with TypeScript.
 
 ## [Changelog](CHANGELOG.md)
 
