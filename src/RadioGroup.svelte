@@ -1,27 +1,29 @@
 <script>
   export let legend = "Radio group legend";
-  export let value = undefined; // string
+
+  /** @type {number | string} */
+  export let value = undefined;
 
   import {
     setContext,
     onMount,
     afterUpdate,
     createEventDispatcher,
-    tick
+    tick,
   } from "svelte";
   import { writable, derived } from "svelte/store";
 
   const dispatch = createEventDispatcher();
   const items = writable({});
-  const flat = derived(items, _ => Object.values(_));
-  const state = derived(flat, _ => _.map(({ checked }) => checked).join(""));
+  const flat = derived(items, (_) => Object.values(_));
+  const state = derived(flat, (_) => _.map(({ checked }) => checked).join(""));
 
   let prevState = undefined;
   let prevValue = value;
 
   function updateValues(item) {
-    items.update(_ => {
-      Object.keys(_).forEach(id => {
+    items.update((_) => {
+      Object.keys(_).forEach((id) => {
         _[id].checked = id === item.id;
       });
 
@@ -31,23 +33,23 @@
 
   setContext("RadioGroup", {
     items,
-    add: item => {
-      items.update(_ => ({ ..._, [item.id]: item }));
+    add: (item) => {
+      items.update((_) => ({ ..._, [item.id]: item }));
     },
     toggle: updateValues,
-    remove: item => {
-      items.update(_ => {
+    remove: (item) => {
+      items.update((_) => {
         delete _[item.id];
         return _;
       });
-    }
+    },
   });
 
   onMount(() => {
     if ($flat.filter(({ checked }) => checked).length === 0) {
-      const item = $flat.filter(_ => _.value === value)[0] || $flat[0];
+      const item = $flat.filter((_) => _.value === value)[0] || $flat[0];
 
-      items.update(_ => {
+      items.update((_) => {
         _[item.id].checked = true;
         return _;
       });
@@ -58,11 +60,11 @@
     if (value !== prevValue) {
       prevValue = value;
 
-      const selected = Object.values($items).filter(_ => _.value === value)[0];
+      const selected = Object.values($items).filter(
+        (_) => _.value === value
+      )[0];
 
-      if (selected !== undefined) {
-        updateValues(selected);
-      }
+      if (selected !== undefined) updateValues(selected);
     }
 
     await tick();
@@ -72,6 +74,7 @@
 
       value = selected.value;
 
+      /** @event {{ selected: { checked: true; id: string; label: string; value: number | string; } }} change */
       dispatch("change", { selected: { ...selected } });
     }
 
@@ -79,7 +82,7 @@
   });
 </script>
 
-<fieldset {...$$restProps} class:svelte-radio-group={true}>
+<fieldset class:svelte-radio-group={true} {...$$restProps}>
   <slot name="legend">
     <legend>{legend}</legend>
   </slot>
