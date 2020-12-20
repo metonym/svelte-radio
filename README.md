@@ -83,7 +83,7 @@ This component is unstyled by design. Use a global class selector to style the `
 
 ## Dispatched events
 
-### `Radio.Group`
+### RadioGroup
 
 | Event name  | Description                        |
 | :---------- | :--------------------------------- |
