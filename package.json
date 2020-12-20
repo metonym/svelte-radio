@@ -1,6 +1,6 @@
 {
   "name": "svelte-radio",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "license": "MIT",
   "description": "Composed Radio button group component for Svelte",
   "author": "Eric Liu (https://github.com/metonym)",
