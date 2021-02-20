@@ -47,6 +47,21 @@ value:
 ```
 <!-- prettier-ignore-end -->
 
+### Custom legend
+
+Customize the radio group legend by using the "legend" slot:
+
+```svelte
+<RadioGroup bind:value>
+  <span slot="legend">
+    <legend style="color: red">Radio group legend</legend>
+  </span>
+  <Radio label="Label 1" value="1" />
+  <Radio label="Label 2" value="2" />
+  <Radio label="Label 3" value="3" />
+</RadioGroup>
+```
+
 ### Styling
 
 This component is unstyled by design. Use a global class selector to style the `.svelte-radio-group` and `.svelte-radio` classes.
@@ -89,22 +104,30 @@ This component is unstyled by design. Use a global class selector to style the `
 
 ### RadioGroup
 
-| Event name  | Description                        |
-| :---------- | :--------------------------------- |
-| `on:change` | triggered if the selection changes |
+- **on:change**: dispatched when the selection changes
 
 ```svelte
+<script>
+  let events = [];
+</script>
+
 <RadioGroup
-  bind:value
+  value="1"
   label="Radio group legend"
   on:change={(e) => {
-    console.log(e.detail);
-  }}>
+    events = [...events, JSON.stringify(e.detail, null, 2)];
+  }}
+>
   <Radio label="Label 1" value="1" />
   <Radio label="Label 2" value="2" />
   <Radio label="Label 3" value="3" />
 </RadioGroup>
 
+{#each events as event}
+  <div>
+    <pre>{event}</pre>
+  </div>
+{/each}
 ```
 
 ## TypeScript
@@ -119,5 +142,5 @@ Svelte version 3.31 or greater is required to use this module with TypeScript.
 
 [MIT](LICENSE)
 
-[npm]: https://img.shields.io/npm/v/svelte-radio.svg?color=blue
+[npm]: https://img.shields.io/npm/v/svelte-radio.svg?color=%23ff3e00&style=for-the-badge
 [npm-url]: https://npmjs.com/package/svelte-radio

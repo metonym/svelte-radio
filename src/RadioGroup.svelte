@@ -1,4 +1,8 @@
 <script>
+  /**
+   * @event {{ selected: { checked: true; id: string; label: string; value: number | string; } }} change
+   */
+
   export let legend = "Radio group legend";
 
   /** @type {number | string} */
@@ -74,7 +78,6 @@
 
       value = selected.value;
 
-      /** @event {{ selected: { checked: true; id: string; label: string; value: number | string; } }} change */
       dispatch("change", { selected: { ...selected } });
     }
 
