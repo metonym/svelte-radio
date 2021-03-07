@@ -6,6 +6,8 @@
 
 <!-- REPO_URL -->
 
+Try it in the [Svelte REPL](https://svelte.dev/repl/f2b10d0faf2e44fd85a72b06a63ae8c2).
+
 ---
 
 <!-- TOC -->
@@ -22,7 +24,6 @@ npm i -D svelte-radio
 
 ### Basic
 
-<!-- prettier-ignore-start -->
 ```svelte
 <script>
   import { RadioGroup, Radio } from "svelte-radio";
@@ -36,16 +37,12 @@ npm i -D svelte-radio
   <Radio label="Label 3" value="3" />
 </RadioGroup>
 
-value:
-{value}
+value: {value}
 
 <br />
 
-<button type="button" on:click={() => value = '2'}>
-  Set value to "2"
-</button>
+<button on:click={() => (value = "2")}>Set value to "2"</button>
 ```
-<!-- prettier-ignore-end -->
 
 ### Custom legend
 
@@ -132,7 +129,7 @@ This component is unstyled by design. Use a global class selector to style the `
 
 ## TypeScript
 
-Svelte version 3.31 or greater is required to use this module with TypeScript.
+Svelte version 3.31 or greater is required to use this component with TypeScript.
 
 ## Changelog
 
