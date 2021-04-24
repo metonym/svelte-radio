@@ -112,7 +112,7 @@ This component is unstyled by design. Use a global class selector to style the `
   value="1"
   label="Radio group legend"
   on:change={(e) => {
-    events = [...events, JSON.stringify(e.detail, null, 2)];
+    events = [...events, e.detail];
   }}
 >
   <Radio label="Label 1" value="1" />
@@ -121,9 +121,7 @@ This component is unstyled by design. Use a global class selector to style the `
 </RadioGroup>
 
 {#each events as event}
-  <div>
-    <pre>{event}</pre>
-  </div>
+  <pre>{JSON.stringify(event, null, 2)}</pre>
 {/each}
 ```
 
