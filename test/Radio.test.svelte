@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { RadioGroup, Radio } from "./types";
+  import { RadioGroup, Radio } from "../types";
 
   let value = "1";
 </script>
@@ -17,6 +17,7 @@ value:
   <button
     type="button"
     on:click={() => {
-      value = '2';
-    }}>Set value to "2"</button>
+      value = "2";
+    }}>Set value to "2"</button
+  >
 </div>
