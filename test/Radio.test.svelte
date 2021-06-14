@@ -4,6 +4,7 @@
   let value = "1";
 </script>
 
+<!-- svelte-ignore missing-declaration -->
 <RadioGroup label="Group label" bind:value>
   <Radio label="Label 1" value="1" />
   <Radio label="Label 2" value="2" />
