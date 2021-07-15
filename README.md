@@ -12,15 +12,23 @@ Try it in the [Svelte REPL](https://svelte.dev/repl/f2b10d0faf2e44fd85a72b06a63a
 
 <!-- TOC -->
 
-## Install
+## Installation
+
+**Yarn**
 
 ```bash
 yarn add -D svelte-radio
-# OR
+```
+
+**NPM**
+
+```bash
 npm i -D svelte-radio
 ```
 
 ## Usage
+
+By default, this component is _unstyled_.
 
 ### Basic
 
@@ -111,9 +119,7 @@ This component is unstyled by design. Use a global class selector to style the `
 <RadioGroup
   value="1"
   label="Radio group legend"
-  on:change={(e) => {
-    events = [...events, e.detail];
-  }}
+  on:change={(e) => (events = [...events, e.detail])}
 >
   <Radio label="Label 1" value="1" />
   <Radio label="Label 2" value="2" />
