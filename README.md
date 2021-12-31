@@ -26,6 +26,12 @@ yarn add -D svelte-radio
 npm i -D svelte-radio
 ```
 
+**pnpm**
+
+```bash
+pnpm i -D svelte-radio
+```
+
 ## Usage
 
 By default, this component is _unstyled_.
