@@ -94,26 +94,29 @@ This component is unstyled by design. Use a global class selector to style the `
 
 ## API
 
-### RadioGroup
+### `RadioGroup` props
 
-| Prop name        | Value                                         |
-| :--------------- | :-------------------------------------------- |
-| legend           | `string`                                      |
-| value            | `string` or `number` (default: `undefined`)   |
-| `...$$restProps` | (forward to the top-level `fieldset` element) |
+| Name   | Type                 | Default value          |
+| :----- | :------------------- | :--------------------- |
+| legend | `string`             | `"Radio group legend"` |
+| value  | `string` or `number` | `undefined`            |
 
-### Radio
+`$$restProps` are forwarded to the top-level `fieldset` element.
 
-| Prop name        | Value                                         |
-| :--------------- | :-------------------------------------------- |
-| label            | `string`                                      |
-| value            | `string` or `number` (default: `undefined`)   |
-| checked          | `boolean` (default: `false`                   |
-| `...$$restProps` | (forward to the second-level `input` element) |
+### `Radio` props
+
+| Name    | Type                 | Default value                           |
+| :------ | :------------------- | :-------------------------------------- |
+| id      | `string`             | `"radio-" + Math.random().toString(36)` |
+| label   | `string`             | `"Radio button label"`                  |
+| value   | `string` or `number` | `""`                                    |
+| checked | `boolean`            | `false`                                 |
+
+`$$restProps` are forwarded to the second-level `input` element.
 
 ## Dispatched events
 
-### RadioGroup
+### `RadioGroup`
 
 - **on:change**: dispatched when the selection changes
 
