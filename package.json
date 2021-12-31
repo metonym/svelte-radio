@@ -17,9 +17,9 @@
     "test": "svelte-check"
   },
   "devDependencies": {
-    "svelte": "^3.44.2",
-    "svelte-check": "^2.2.10",
-    "svelte-readme": "^3.6.1"
+    "svelte": "^3.44.3",
+    "svelte-check": "^2.2.11",
+    "svelte-readme": "^3.6.2"
   },
   "repository": {
     "type": "git",
