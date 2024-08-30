@@ -17,7 +17,7 @@
     "test": "svelte-check"
   },
   "devDependencies": {
-    "svelte": "^3.44.3",
+    "svelte": "^4.2.19",
     "svelte-check": "^2.2.11",
     "svelte-readme": "^3.6.2"
   },
